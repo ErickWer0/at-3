@@ -1,0 +1,10 @@
+[Unit]
+Description=Nginx Exporter Version {{ nginx_exporter_version }}
+After=network-online.target
+[Service]
+User={{ nginx_exporter_user }}
+Group={{ nginx_exporter_user }}
+Type=simple
+ExecStart={{ nginx_exporter_bin }}
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+---
+ssl_crt: /etc/ssl/certs/site.crt
+ssl_key: /etc/ssl/private/site.key
+server_name: 51.250.14.58

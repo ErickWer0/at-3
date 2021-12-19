@@ -1,0 +1,5 @@
+---
+# defaults file for site
+app_dir:  "/var/www"
+image_name: flask_app
+image_tag: v1.0

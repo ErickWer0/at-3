@@ -1,0 +1,11 @@
+---
+- name: Create a directory if it does not exists
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+    mode: '0755'
+    
+- name: Copy source code to remote VM
+  copy:
+    src: ../flask_app
+    dest: "{{ app_dir }}"

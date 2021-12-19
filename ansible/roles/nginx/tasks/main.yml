@@ -1,0 +1,46 @@
+---
+- name: Install Nginx 
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: nginx service enable
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Copy site crt
+  copy:
+    src: site.crt
+    dest: /etc/ssl/certs/site.crt
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy site key
+  copy:
+    src: site.key
+    dest: /etc/ssl/private/site.key
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Template index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Template sites-available
+  template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - nginx restart

@@ -1,0 +1,29 @@
+---
+- name: Preinstall task
+  apt: 
+    name: "{{ item }}" 
+    state: latest 
+    update_cache: yes
+  loop: ['ca-certificates', 'curl', 'gnupg', 'lsb-release']
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
+- name: Install Docker.
+  package:
+    update_cache: yes 
+    name: docker-ce 
+    state: latest
+
+- name: Start & Enable Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

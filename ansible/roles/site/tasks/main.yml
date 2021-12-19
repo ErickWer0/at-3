@@ -1,0 +1,6 @@
+---
+# tasks file for site
+- include:
+    copy_code.yml
+- include:
+    docker_play.yml

@@ -1,0 +1,11 @@
+---
+- name: Install application
+  hosts: demo
+  #gather_facts: no
+  become: yes
+  
+  roles:
+    #- docker
+    #- site
+    #- nginx
+    - ansible-prometheus
